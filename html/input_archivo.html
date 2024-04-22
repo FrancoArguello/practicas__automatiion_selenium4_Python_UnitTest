@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload Image</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Estilo personalizado para cambiar el cursor */
+    #upload-box {
+      cursor: pointer;
+      background-size: cover;
+      background-position: center;
+      max-width: 30vw; /* Establecer el ancho máximo al 30% del viewport */
+    }
+
+    /* Estilo para el contenedor de imagen */
+    #upload-box img {
+      display: none; /* Ocultar la imagen inicialmente */
+    }
+  </style>
+</head>
+<body>
+
+<div class="container mt-5">
+  <h1 class="mb-4">Upload Image</h1>
+  
+  <!-- Contenedor del input -->
+  <div class="position-relative">
+    <!-- Cuadro para cargar la imagen -->
+    <div id="upload-box" class="text-center p-5 border rounded">
+      <span>Haz click aquí para cargar tu imagen</span>
+      <img id="preview-image" class="img-fluid rounded mt-2">
+    </div>
+    <!-- Campo de entrada oculto -->
+    <input type="file" class="d-none" id="upload-image">
+  </div>
+  
+  <button type="submit" class="btn btn-primary mt-3">Upload</button>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- jQuery (necesario para previsualizar la imagen) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script>
+  // Código JavaScript para previsualizar la imagen seleccionada
+  $(document).ready(function(){
+    $('#upload-image').change(function(){
+      var input = this;
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          $('#preview-image').attr('src', e.target.result).show(); // Mostrar la imagen cargada
+          $('#upload-box').css('background-image', 'url(' + e.target.result + ')'); // Establecer el fondo del cuadro de carga
+        }
+        reader.readAsDataURL(input.files[0]);
+      }
+    });
+    
+    // Hacer clic en el cuadro para activar el input de tipo "file"
+    $('#upload-box').click(function(){
+      $('#upload-image').click();
+    });
+  });
+</script>
+
+</body>
+</html>

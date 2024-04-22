@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prompt Alert</title>
+</head>
+<body>
+  <button name="prompt_alert" onclick="myFunction()">Iniciar</button>
+  <p id="demostracion"> </p>
+
+  <script>
+    function myFunction() {
+      var texto;
+      var usuario = prompt("Ingresa tu nombre:");
+      if(usuario === null){
+        texto = "Usuario ha cancelado el ingreso de datos";
+      } else if(usuario === ""){
+        texto = "No has ingresado ningún nombre. Intenta de nuevo.";
+      } else {
+        texto = "Hola " + usuario;
+      }
+      document.getElementById("demostracion").innerHTML = texto;
+    }
+  </script>
+</body>
+</html>

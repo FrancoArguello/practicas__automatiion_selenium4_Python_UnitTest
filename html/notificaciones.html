@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notificaciones</title>
+  </head>
+  <body>
+    <h1>Permisos de Notificación</h1>
+    <p>Esta página web solicitará permiso para enviar notificaciones.</p>
+
+    <script>
+      // Función para solicitar permiso de notificación
+      function solicitarPermisos() {
+        // Verificar si el navegador soporta notificaciones
+        if (!("Notification" in window)) {
+          alert("Tu navegador no soporta notificaciones.");
+        } else {
+          // Solicitar permiso para enviar notificaciones y que nos muestre en pantalla que acción se llevo a cabo con el permiso
+          Notification.requestPermission().then(function (permission) {
+            if (permission === "granted") {
+              alert("¡Permiso concedido para enviar notificaciones!");
+            } else if (permission === "denied") {
+              alert("Permiso denegado para enviar notificaciones.");
+            }
+          });
+        }
+      }
+
+      // Llamar a la función al cargar la página
+      window.onload = solicitarPermisos;
+      //si no te aparece las opciones y se selecciona automaticamente para solucionarlo deber borrar la info guardade en el cache y el historial de navegación
+    </script>
+  </body>
+</html>
